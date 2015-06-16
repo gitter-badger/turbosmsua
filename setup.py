@@ -2,7 +2,7 @@
 from setuptools import setup
 
 INSTALL_REQUIRES = [
-    "suds >= 0.4",
+    "suds-jurko >= 0.6",
 ]
 
 setup(
