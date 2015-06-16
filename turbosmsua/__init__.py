@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
 from suds.client import Client
 
 
@@ -6,13 +8,13 @@ class Turbosms:
 
     def __init__(self, login, password):
         self.client = Client('http://turbosms.in.ua/api/wsdl.html')
-        auth_result = self.client.service.Auth(login, password).encode('utf8')
+        auth_result = self.client.service.Auth(login, password)
 
         if auth_result != "Вы успешно авторизировались":
             raise ValueError("Auth error: %s" % auth_result)
 
     def balance(self):
-        balance_result = self.client.service.GetCreditBalance().encode('utf8')
+        balance_result = self.client.service.GetCreditBalance()
 
         try:
             balance = float(balance_result)
@@ -42,11 +44,11 @@ class Turbosms:
         destinations_formated = ",".join(map(format_destination, destinations))
 
         if not wappush:
-            send_result = self.client.service.SendSMS(sender, destinations_formated, text.decode('utf8')).ResultArray
+            send_result = self.client.service.SendSMS(sender, destinations_formated, text).ResultArray
         else:
-            send_result = self.client.service.SendSMS(sender, destinations_formated, text.decode('utf8'), wappush).ResultArray
+            send_result = self.client.service.SendSMS(sender, destinations_formated, text, wappush).ResultArray
 
-        send_status = send_result.pop(0).encode('utf8')
+        send_status = send_result.pop(0)
 
         to_return = {"status": send_status}
         for i, sms_id in enumerate(send_result):
@@ -56,4 +58,4 @@ class Turbosms:
 
     def message_status(self, message_id):
         status = self.client.service.GetMessageStatus(message_id)
-        return status.encode('utf8')
+        return status
