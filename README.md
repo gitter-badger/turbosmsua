@@ -1,6 +1,8 @@
 Реализация SOAP сервиса для отправки смс через сервис turbosms.ua
 ==========
 
+[![Join the chat at https://gitter.im/asherepa/turbosmsua](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/asherepa/turbosmsua?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Для установки пакета выполните:
 ```sh
 $ pip install git+git://github.com/ukrainian-solutions/turbosmsua.git
